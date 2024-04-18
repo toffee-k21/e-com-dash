@@ -1,36 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
-import Add from './components/Add';
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Home from './components/Home';
+import Add from './pages/Add';
+import { Route, RouterProvider, Routes, createBrowserRouter,BrowserRouter } from "react-router-dom";
+import Home from './pages/Home';
+import Nav from './components/Nav';
+import Update from './pages/Update';
+import Profile from './pages/Profile';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <RouterProvider router={AppRouter}/>
+    <div>
+      <BrowserRouter>
+      <Nav />
+      <Routes >
+        <Route path='/add' element={<Add />} />
+        <Route path='/update' element={<Update />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/logout' element={<h1>LogOut</h1>} />
+      </Routes>
+      </BrowserRouter> 
+      <Footer />
+    </div> 
   );
 }
 
-const AppRouter = createBrowserRouter([
-  {
-    path:"/",
-    element:<Home />
-  },
-  {
-    path:"/add",
-    element: <Add />
-  },
-  {
-    path:"/update",
-    element: <div>update </div>
-  },
-  {
-    path:"/profile",
-    element: <div>profile </div>
-  },
-  {
-    path:"/logout",
-    element: <div>logout </div>
-  },
-])
+
 
 export default App;
