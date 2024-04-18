@@ -22,7 +22,15 @@ const AppRouter = createBrowserRouter([
   {
     path:"/update",
     element: <div>update </div>
-  }
+  },
+  {
+    path:"/profile",
+    element: <div>profile </div>
+  },
+  {
+    path:"/logout",
+    element: <div>logout </div>
+  },
 ])
 
 export default App;
