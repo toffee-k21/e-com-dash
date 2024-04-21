@@ -7,6 +7,7 @@ import Nav from './components/Nav';
 import Update from './pages/Update';
 import Profile from './pages/Profile';
 import Footer from './components/Footer';
+import Sign from './pages/Sign';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/' element={<Home />} />
         <Route path='/logout' element={<h1>LogOut</h1>} />
+        <Route path='/sign' element={<Sign />} />
       </Routes>
       </BrowserRouter> 
       <Footer />
