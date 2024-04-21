@@ -7,8 +7,20 @@ const Sign = () => {
     const [password,setPassword] = useState('')
 
 
-  const  handleSign = ( )=>{
+  const  handleSign = async ( )=>{
         console.log(name,email,password)
+        // JSON.stringify() is a method in JavaScript used to convert a JavaScript object or value into a JSON string.
+        // JSON.parse() is a method in js used to convert a JSON string into js object
+        const result = await fetch("http://localhost:5000/register",{
+          method:"Post",
+          body:JSON.stringify({name:name,email:email,password:password}),
+          headers:{
+            "Content-Type" : "application/json"
+          }
+        })
+        console.log(result)
+        const data = await result.json();
+        console.log(data)
     }
 
   return (
