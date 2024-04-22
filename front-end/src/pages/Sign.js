@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Sign = () => {
@@ -9,9 +9,11 @@ const Sign = () => {
     const navigate = useNavigate();
 
     const auth = localStorage.getItem("user")
-    if(auth){
-      navigate('/')
-    }
+    useEffect(()=>{
+      if(auth){
+        navigate('/')
+      }
+    },[])
 
   const  handleSign = async ( )=>{
         console.log(name,email,password)
