@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Sign = () => {
 
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+    const navigate = useNavigate();
 
+    const auth = localStorage.getItem("user")
+    if(auth){
+      navigate('/')
+    }
 
   const  handleSign = async ( )=>{
         console.log(name,email,password)
@@ -21,6 +27,9 @@ const Sign = () => {
         console.log(result)
         const data = await result.json();
         console.log(data)
+        localStorage.setItem("user",JSON.stringify(data));
+        // cookie.setItem("user",JSON.stringify(data))
+        navigate("/")
     }
 
   return (
