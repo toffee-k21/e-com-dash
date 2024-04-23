@@ -21,7 +21,7 @@ function App() {
         <Route path='/update' element={<Update />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/' element={<Home />} />
-        <Route path='/logout' element={<h1>LogOut</h1>} />
+        {/* <Route path='/logout' element={<h1>LogOut</h1>} /> */}
         </Route >
         <Route path='/sign' element={<Sign />} />
       </Routes>
