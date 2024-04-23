@@ -14,16 +14,16 @@ app.get("/",(req,res)=>{
 // postUrl
 
 app.use(express.json())//middleware for form data
-app.post("/register", (req,res )=>{
+app.post("/register", async(req,res )=>{
     console.log(req.body)
     const insert = new User(req.body);
-    insert.save();
+   let result =  await insert.save();
     // res.send("Hogya send to database")
     // you can't use 2 res.send at a single req
     // res.send({message:"this is from data base",...req.body})
-    insert = insert.toObject();
-    delete insert.password
-    res.send(insert)
+    result = result.toObject();
+    delete result.password
+    res.send(result)
     })
 
     app.post("/login",async (req,res)=>{
