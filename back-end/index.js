@@ -20,10 +20,10 @@ app.post("/register", (req,res )=>{
     insert.save();
     // res.send("Hogya send to database")
     // you can't use 2 res.send at a single req
-    res.send({message:"this is from data base",...req.body})
-    // insert = insert.toObject();
-    // delete insert.password
-    // res.send(insert)
+    // res.send({message:"this is from data base",...req.body})
+    insert = insert.toObject();
+    delete insert.password
+    res.send(insert)
     })
 
     app.post("/login",async (req,res)=>{
