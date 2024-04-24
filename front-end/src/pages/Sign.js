@@ -50,7 +50,7 @@ const switchLogSign = () =>{
           })
           const data = await result.json();
           // console.log(data)
-          localStorage.setItem("user",data)
+          localStorage.setItem("user",JSON.stringify(data));
 navigate("/")
         }
     }
