@@ -45,11 +45,12 @@ const switchLogSign = () =>{
             method: "post",
             body:JSON.stringify({email:email,password:password}),
             headers:{
-              " Content-Type": "application/json"
+              "Content-Type": "application/json"
             }
           })
           const data = await result.json();
-          console.log(data)
+          // console.log(data)
+          localStorage.setItem("user",data)
 navigate("/")
         }
     }
