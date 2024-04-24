@@ -57,9 +57,9 @@ navigate("/")
 
   return (
     <div className='m-auto w-1/2 bg-gray-100 my-10'>
-        <h1 className='text-xl font-semibold m-7'>{isSignUp?"Sign Up":"Login"}</h1>
-        <div>
-        <div onClick={switchLogSign}>{isSignUp?"Already have an account ? Login" :"Create a new account"}</div>
+        <div className='my-10'>
+        <h1 className='text-xl font-semibold m-7 pt-7'>{isSignUp?"Sign Up":"Login"}</h1>
+        <div className='m-7 cursor-pointer' onClick={switchLogSign}>{isSignUp?"Already have an account ? Login" :"Create a new account? Click"}</div>
           {isSignUp?  <input name="name" value={name} onChange={(e)=>setName(e.target.value)} className='border-[1px] border-black p-1 m-7 block' placeholder='Enter your name' type="text"/>:<div></div>}
             <input name="email" onChange={(e)=>setEmail(e.target.value)} className='p-1 m-7 block' placeholder='Enter your email' type="email"/>
             <input name="password" onChange={(e)=>setPassword(e.target.value)}className='p-1 m-7 block' password="Enter your password" type="password"/>

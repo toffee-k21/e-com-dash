@@ -34,7 +34,7 @@ const Nav = () => {
           </li>
           </>:<div></div>}
           <li className="p-1 m-2">
-          {auth? <div onClick={handleLogout}>LogOut({JSON.parse(auth).name})</div>:<Link to="/sign">SignUp</Link>}
+          {auth? <div className="cursor-pointer" onClick={handleLogout}>LogOut({JSON.parse(auth).name})</div>:<Link to="/sign">SignUp</Link>}
           </li>
         </ul>
       </nav>
