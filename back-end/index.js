@@ -50,7 +50,8 @@ app.post("/add-product", async (req, res) => {
 app.get("/products", async(req,res) =>{
   const data = await Product.find({})
   console.log(data)
-  res.send(data)
+  // res.send(JSON.parse(data))//we can send js objects
+  res.send(data)//we can send objects
 })
 
 app.listen(5000);
