@@ -47,4 +47,10 @@ app.post("/add-product", async (req, res) => {
   res.send(req.body);
 });
 
+app.get("/products", async(req,res) =>{
+  const data = await Product.find({})
+  console.log(data)
+  res.send(data)
+})
+
 app.listen(5000);
