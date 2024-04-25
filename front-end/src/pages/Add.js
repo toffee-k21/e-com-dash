@@ -10,9 +10,26 @@ const Add = () => {
   let user = localStorage.getItem("user")
   user = JSON.parse(user)
   // console.log(user)
-  const handleAdd = () => {
-    console.log(name, company, category, price , user._id);
+  const handleAdd = async () => {
+    // console.log(name, company, category, price , user._id);
+    const addproduct = await fetch("http://localhost:5000/add-product",{
+      method:"post",
+      body:JSON.stringify({
+        productName:name,
+        price:price,
+        category:category,
+        company:company,
+        userId:user._id
+      }),
+      headers:{
+        "Content-Type" : "application/json"
+      }
+    })
+    const data = await addproduct.json()
+    console.log(data)
   };
+
+
   return (
     <div className="my-11 flex justify-center">
       <div className="w-1/2">
