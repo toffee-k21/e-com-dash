@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Footer from './components/Footer';
 import Sign from './pages/Sign';
 import PrivateComponent from './components/PrivateComponent';
+import Products from './pages/Products';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes >
         <Route element={<PrivateComponent />}>
         <Route path='/add' element={<Add />} />
+        <Route path='/products' element={<Products />} />
         <Route path='/update' element={<Update />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/' element={<Home />} />
