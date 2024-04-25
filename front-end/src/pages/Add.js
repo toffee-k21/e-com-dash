@@ -4,10 +4,14 @@ const Add = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [company, setCompany] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("electronics");
 
+
+  let user = localStorage.getItem("user")
+  user = JSON.parse(user)
+  // console.log(user)
   const handleAdd = () => {
-    console.log(name, company, category, price);
+    console.log(name, company, category, price , user._id);
   };
   return (
     <div className="my-11 flex justify-center">
