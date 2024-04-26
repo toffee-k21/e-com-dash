@@ -18,7 +18,7 @@ const Products = () => {
   return (
     <div className='m-11'>
         <h1 className='text-2xl font-semibold'>Products</h1>
-        <div className='flex'>
+        <div className='flex flex-wrap shrink-0'>
             {productList.map((r)=><ProductCard details={r}/>)}
         </div>
     </div>
