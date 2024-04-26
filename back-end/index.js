@@ -54,4 +54,15 @@ app.get("/products", async(req,res) =>{
   res.send(data)//we can send objects
 })
 
+// app.delete("/update",async (req,res)=>{
+
+// let deleteProduct = await Product.delete({})
+// })
+
+app.get("/update/:id", async (req,res)=>{
+const userId = req.params.id
+ let userProducts = await Product.find({userId:userId})
+ res.send(userProducts)
+})
+
 app.listen(5000);
