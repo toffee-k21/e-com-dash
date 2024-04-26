@@ -65,4 +65,19 @@ const userId = req.params.id
  res.send(userProducts)
 })
 
+app.patch("/update/:id" , async (req,res)=>{
+  const productId = req.params.id
+  // console.log(productId)
+  // let findProduct = await Product.findOne({productId:productId})
+  const updateList = await Product.findOneAndUpdate({_id:productId}, {
+   productName:req.body.productName,
+   price:req.body.price,
+   company:req.body.company,
+   category:req.body.category
+  }, {new:true})
+  res.send(updateList)
+  console.log(updateList)
+  // console.log(productId)
+})
+
 app.listen(5000);
