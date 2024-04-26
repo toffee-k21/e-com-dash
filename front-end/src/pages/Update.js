@@ -18,11 +18,19 @@ useEffect(()=>{
 fetchUserProducts(userId)
 },[])
 
+
+const handleDelete = ( id)=>{
+console.log(id)
+}
+
   return (
     <div className='m-11'>
     <h1 className='text-2xl font-semibold'>Products</h1>
     <div className='flex'>
-        {userProducts.map((r)=><ProductCard details={r}/>)}
+        {userProducts.map((r)=>{return (<>
+          <ProductCard details={r}/>
+          <button className='bg-black text-white p-2 my-2 mr-2' onClick={()=>handleDelete(r._id)}>Delete</button>
+          </>)})}
     </div>
 </div>
   )
