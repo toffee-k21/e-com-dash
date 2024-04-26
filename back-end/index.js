@@ -54,10 +54,10 @@ app.get("/products", async(req,res) =>{
   res.send(data)//we can send objects
 })
 
-// app.delete("/update",async (req,res)=>{
-
-// let deleteProduct = await Product.delete({})
-// })
+app.delete("/update",async (req,res)=>{
+let deleteProduct = await Product.deleteOne({_id:req.body._id})//obj pass krna h
+res.send(deleteProduct)
+})
 
 app.get("/update/:id", async (req,res)=>{
 const userId = req.params.id
