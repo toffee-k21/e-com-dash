@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Sign from './pages/Sign';
 import PrivateComponent from './components/PrivateComponent';
 import Products from './pages/Products';
+import UpdateFrom from './pages/UpdateForm';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/update' element={<Update />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/update/:id' element={<UpdateFrom />} />
         <Route path='/' element={<Home />} />
         {/* <Route path='/logout' element={<h1>LogOut</h1>} /> */}
         </Route >

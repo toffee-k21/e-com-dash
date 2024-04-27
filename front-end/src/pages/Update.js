@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard'
-import {useNavigate } from 'react-router-dom'
+import {Link, useNavigate } from 'react-router-dom'
 
 const Update = () => {
 
@@ -43,10 +43,12 @@ fetchUserProducts(userId)
     <div className='m-11'>
     <h1 className='text-2xl font-semibold'>Products</h1>
     <div className='flex flex-wrap'>
-        {userProducts.map((r)=>{return (<>
-          
+        {userProducts.map((r)=>{return (<>     
           <ProductCard details={r}/>
+          <div className='flex flex-col'>
           <button className='bg-black text-white p-2 my-2 mr-2' onClick={()=>handleDelete(r._id)}>Delete</button>
+          <Link to={"/update/"+r._id}><button className='bg-black text-white p-2 my-2 mr-2' >Update</button></Link>
+          </div>
            
           </>)})}
     </div>
