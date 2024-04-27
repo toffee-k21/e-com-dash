@@ -1,19 +1,40 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateFrom = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [company, setCompany] = useState("");
   const [category, setCategory] = useState("electronics");
+  const [prefill,setPrefill] = useState({})
+  const navigate = useNavigate()
 
 
   const id = useParams().id
-  console.log("paramas",id)
-  console.log("http://localhost:5000/update/"+id)
 
   let user = localStorage.getItem("user")
   user = JSON.parse(user)
+  const handlePrefill = async ( )=>{
+    const fetchPrefill = await fetch("http://localhost:5000/update/"+id, {
+        method:"PUT",
+        headers:{
+            "Content-Type" : "applications/json"
+        }
+    })
+    const data = await fetchPrefill.json();
+    console.log(data)
+    setPrefill(data)
+    // console.log(prefill)
+    // if (prefill != null){
+    //     setName(prefill.productName);
+    //     setPrice(prefill.price);
+    //     setCompany(prefill.company);
+    //     setCategory(prefill.category);
+    // }
+  }
+  useEffect(()=>{
+handlePrefill()
+  },[])
   // console.log(user)
   const handleUpdate = async () => {
     // console.log(name, company, category, price , user._id);
@@ -31,8 +52,10 @@ const UpdateFrom = () => {
     })
     const data = await updateProduct.json()
     console.log(data)
+    navigate("/update")
   };
 
+  console.log(prefill)
 
   return (
     <div className="my-11 flex justify-center">
@@ -42,7 +65,7 @@ const UpdateFrom = () => {
           <div>
             <label className="m-2 block">Enter product name</label>
             <input
-              value={name}
+              value={name == '' ? prefill.productName: name}
               className="m-2 border-[1px] w-full p-[6px]"
               onChange={(e) => setName(e.target.value)}
               type="text"
@@ -53,6 +76,7 @@ const UpdateFrom = () => {
           <div>
             <label className="m-2 block">Enter product price</label>
             <input
+             value={price == '' ? prefill.price: price}
               className="m-2 border-[1px] w-full p-[6px]"
               onChange={(e) => setPrice(e.target.value)}
               type="text"
@@ -63,6 +87,7 @@ const UpdateFrom = () => {
           <div>
             <label className="m-2 block">Enter Company</label>
             <input
+             value={company == '' ? prefill.company: company}
               className="m-2 border-[1px] w-full p-[6px]"
               onChange={(e) => setCompany(e.target.value)}
               type="text"
@@ -74,7 +99,7 @@ const UpdateFrom = () => {
             <label className="m-2 block">Select category</label>
             <select
               className=" bg-black text-white m-2 p-[6px]"
-              value={category}
+              value={category == '' ? prefill.category: category}
               onChange={(e) => setCategory(e.target.value)}
             >
               <option value="electronics">Electronics</option>
