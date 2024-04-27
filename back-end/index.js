@@ -76,8 +76,15 @@ app.patch("/update/:id" , async (req,res)=>{
    category:req.body.category
   }, {new:true})
   res.send(updateList)
-  console.log(updateList)
+  // console.log(updateList)
   // console.log(productId)
+})
+//put se kr de rha hoon kuki get busy hai ish route k liye
+app.put("/update/:id",async (req,res)=>{
+  const id = req.params.id
+  console.log(id)
+  const getPrefill = await Product.findOne({_id:id})
+  res.send(getPrefill)
 })
 
 app.listen(5000);
