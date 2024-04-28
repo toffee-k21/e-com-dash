@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard'
+import Search, {searchResult} from '../components/Search'
 
 const Products = () => {
 
@@ -15,11 +16,14 @@ const Products = () => {
         handleFetchProducts()
     },[])
 
+    const searchProductList = searchResult
+
   return (
     <div className='m-11'>
-        <h1 className='text-2xl font-semibold'>Products</h1>
+        <h1 className='text-2xl font-semibold m-2'>Products</h1>
+        <Search />
         <div className='flex flex-wrap shrink-0'>
-            {productList.map((r)=><ProductCard details={r}/>)}
+            {searchProductList == [] ? searchProductList.map((r)=><ProductCard details={r}/>):productList.map((r)=><ProductCard details={r}/>)}
         </div>
     </div>
   )
