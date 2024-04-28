@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom'
+import { ProductContext } from "../utils/Context";
 
 const Nav = () => {
 
   const auth = localStorage.getItem("user");
   const navigate = useNavigate()
   console.log(auth)
+
+  const contextget = useContext(ProductContext)//reading context api store
+  console.log(contextget)
 
   const handleLogout = ( )=>{
     localStorage.clear("user")
