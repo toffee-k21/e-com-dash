@@ -87,4 +87,17 @@ app.put("/update/:id",async (req,res)=>{
   res.send(getPrefill)
 })
 
+app.get("/search/:key",async (req,res)=>{
+  const SearchProduct = await Product.find({
+    "$or":[
+      {productName: {$regex:req.params.key}},
+      {company: {$regex:req.params.key}}
+    ]//logic: ye $or ke andr jitna kuch likho ge utna find krega
+  })
+  // const SearchProduct = await Product.find({
+  //   productName:req.params.key,
+  // })
+  res.send(SearchProduct)
+})
+
 app.listen(5000);
