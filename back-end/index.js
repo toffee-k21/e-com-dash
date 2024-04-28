@@ -92,11 +92,13 @@ app.get("/search/:key",async (req,res)=>{
     "$or":[
       {productName: {$regex:req.params.key}},
       {company: {$regex:req.params.key}}
-    ]//logic: ye $or ke andr jitna kuch likho ge utna find krega
+    ]
   })
   // const SearchProduct = await Product.find({
-  //   productName:req.params.key,
-  // })
+  //   productName:{$regex:req.params.key},
+  // })//it works but array pr nhi apply hoga n 
+  // note: regex is needed to match the perticular part of the key with db productName
+  // "$or" is needed for applying logical operator on array given
   res.send(SearchProduct)
 })
 
