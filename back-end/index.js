@@ -4,12 +4,19 @@ const cors = require("cors");
 // const postUrl = require("./Db/routes/user")
 const User = require("./Db/models/user");
 const Product = require("./Db/models/product");
+const { Server } = require('socket.io');
 
 const app = express();
 app.use(cors());
 app.get("/", (req, res) => {
   res.send("app is working");
 });
+const io = new Server({
+  cors: true
+});
+io.on('connection',()=>{
+  console.log("user connected")
+})
 
 // postUrl
 
@@ -103,3 +110,4 @@ app.get("/search/:key",async (req,res)=>{
 })
 
 app.listen(5000);
+io.listen(5001);

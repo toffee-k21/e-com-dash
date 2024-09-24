@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { ProductContext } from "../utils/Context";
+const { io } = require("socket.io-client");
 
 const Nav = () => {
 
@@ -15,6 +16,9 @@ const Nav = () => {
     localStorage.clear("user")
     navigate("/sign")
   }
+  useEffect(()=>{
+    const socket = io("http://localhost:5001/")
+      },[])
 
   return (
     <div>
