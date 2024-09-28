@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSocket } from "../utils/SocketContext";
 
 const Add = () => {
   const [name, setName] = useState("");
@@ -7,7 +8,8 @@ const Add = () => {
   const [category, setCategory] = useState("electronics");
   const [err, setErr] = useState(false);
 
-
+  const socket = useSocket().socket;
+console.log(socket);
   let user = localStorage.getItem("user")
   user = JSON.parse(user)
   // console.log(user)
@@ -33,6 +35,7 @@ if(!name || !price || !company){
       }
     })
     const data = await addproduct.json()
+    socket.emit("Product-added",data)
     console.log(data)
   };
 

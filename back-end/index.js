@@ -14,9 +14,14 @@ app.get("/", (req, res) => {
 const io = new Server({
   cors: true
 });
-io.on('connection',()=>{
-  console.log("user connected")
+io.on('connection',(socket)=>{
+  console.log("user connected");
+  socket.on("Product-added",(data)=>{
+    console.log(data);
+    socket.emit("new-product-arrive",data);
+  })
 })
+
 
 // postUrl
 

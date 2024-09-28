@@ -1,13 +1,18 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { ProductContext } from "../utils/Context";
-const { io } = require("socket.io-client");
+import { useSocket } from "../utils/SocketContext";
 
 const Nav = () => {
-
+  const socket = useSocket().socket;
+  console.log(socket);
+  socket.on("new-product-arrive",(data)=>{
+    console.log(data.productName);
+    });
   const auth = localStorage.getItem("user");
   const navigate = useNavigate()
   console.log(auth)
+  const [itemNameArrived,setItemNameArrived] = useState( null );
 
   const contextget = useContext(ProductContext)//reading context api store
   console.log(contextget)
@@ -16,9 +21,7 @@ const Nav = () => {
     localStorage.clear("user")
     navigate("/sign")
   }
-  useEffect(()=>{
-    const socket = io("http://localhost:5001/")
-      },[])
+// // console.log(socket)
 
   return (
     <div>
@@ -42,12 +45,14 @@ const Nav = () => {
           </li>
           <li className="p-1 m-2">
             <Link to="/profile">Profile</Link>
+            {itemNameArrived}
           </li>
           </>:<div></div>}
           <li className="p-1 m-2">
           {auth? <div className="cursor-pointer" onClick={handleLogout}>LogOut({JSON.parse(auth).name})</div>:<Link to="/sign">SignUp</Link>}
           </li>
         </ul>
+
       </nav>
     </div>
   );

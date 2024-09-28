@@ -4,14 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ProductProvider } from "./utils/Context";
+import { SocketProvider } from "./utils/SocketContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  <SocketProvider>
   <ProductProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
   </ProductProvider>
+  </SocketProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
