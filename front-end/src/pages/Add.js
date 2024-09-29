@@ -2,43 +2,41 @@ import React, { useState } from "react";
 import { useSocket } from "../utils/SocketContext";
 
 const Add = () => {
+  const { socket } = useSocket();
+  console.log("socket => ", socket);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [company, setCompany] = useState("");
   const [category, setCategory] = useState("electronics");
   const [err, setErr] = useState(false);
-
-  const socket = useSocket().socket;
-console.log(socket);
-  let user = localStorage.getItem("user")
-  user = JSON.parse(user)
+  let user = localStorage.getItem("user");
+  user = JSON.parse(user);
   // console.log(user)
   const handleAdd = async () => {
     //validation
-if(!name || !price || !company){ 
-  setErr(true)
-  return 
-}
+    if (!name || !price || !company) {
+      setErr(true);
+      return;
+    }
 
     // console.log(name, company, category, price , user._id);
-    const addproduct = await fetch("http://localhost:5000/add-product",{
-      method:"post",
-      body:JSON.stringify({
-        productName:name,
-        price:price,
-        category:category,
-        company:company,
-        userId:user._id
+    const addproduct = await fetch("http://localhost:5000/add-product", {
+      method: "post",
+      body: JSON.stringify({
+        productName: name,
+        price: price,
+        category: category,
+        company: company,
+        userId: user._id,
       }),
-      headers:{
-        "Content-Type" : "application/json"
-      }
-    })
-    const data = await addproduct.json()
-    socket.emit("Product-added",data)
-    console.log(data)
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await addproduct.json();
+    socket.emit("Product-added", data);
+    console.log(data);
   };
-
 
   return (
     <div className="my-11 flex justify-center">
@@ -54,7 +52,11 @@ if(!name || !price || !company){
               type="text"
               placeholder="ex: I Phone 15 pro"
             />
-            {err && !name && <span className="text-red-500 mx-2">Enter a valid product name </span>}
+            {err && !name && (
+              <span className="text-red-500 mx-2">
+                Enter a valid product name{" "}
+              </span>
+            )}
           </div>
           <div>
             <label className="m-2 block">Enter product price</label>
@@ -64,7 +66,11 @@ if(!name || !price || !company){
               type="text"
               placeholder="ex: 1400"
             />
-            {err && !price && <span className="text-red-500 mx-2">Enter a valid product price </span>}
+            {err && !price && (
+              <span className="text-red-500 mx-2">
+                Enter a valid product price{" "}
+              </span>
+            )}
           </div>
           <div>
             <label className="m-2 block">Enter Company</label>
@@ -74,7 +80,11 @@ if(!name || !price || !company){
               type="text"
               placeholder="ex: Apple"
             />
-            {err && !company && <span className="text-red-500 mx-2">Enter a valid product company </span>}
+            {err && !company && (
+              <span className="text-red-500 mx-2">
+                Enter a valid product company{" "}
+              </span>
+            )}
           </div>
           <div>
             <label className="m-2 block">Select category</label>
